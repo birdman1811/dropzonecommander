@@ -1,0 +1,16 @@
+.header{
+    text-align: center;    
+    width:100%;
+    background-image: url("/src/assets/Images/gradient.jpg")
+    
+}
+
+
+
+
+@media screen and (max-width:900px){    
+
+    .headimg{
+        width:100%
+    }
+}

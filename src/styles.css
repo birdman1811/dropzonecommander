@@ -1,0 +1,46 @@
+body{
+    background-color: black;
+    
+}
+
+p{
+    color: white;
+}
+
+.textbox{
+    text-align: left;
+}
+
+.leftimagebox{
+    float: left;
+}
+
+.rightimagebox{
+    float: right;
+}
+
+.fullimagestrip{
+    width: 100%
+}
+
+.videostrip{
+    width: 100%;
+    background-image: url(/assets/Images/gradient.jpg);
+    text-align: center;
+}
+
+.youtubevideo{
+    height: 415px;
+  width: 560px;  
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+@media screen and (max-width:600px){
+    .youtubevideo{
+        height: 157px;
+        width: 280px;
+      }
+}
