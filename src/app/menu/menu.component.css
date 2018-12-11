@@ -30,7 +30,7 @@ p{
     text-align: center;
     background-color: black;
     animation: menuflash;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-delay: 1s;
   }
   
