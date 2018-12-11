@@ -1,22 +1,42 @@
 body{
-    background-color: black;
-    
+    background-color: white;
+    text-align: center;
 }
 
 p{
-    color: white;
+    color: black;
 }
+
+#navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
 
 .textbox{
     text-align: left;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.introtext{
+    text-align: center;
+    padding: 20px;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .leftimagebox{
     float: left;
+    height: 200px;
+    padding: 5px;
 }
 
 .rightimagebox{
     float: right;
+    height:200px;
+    padding: 5px;
 }
 
 .fullimagestrip{
@@ -43,4 +63,30 @@ p{
         height: 157px;
         width: 280px;
       }
+
+      .textbox{
+        text-align: left;
+        padding: 1px;     
+        width: 92%;
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+    
+    .introtext{
+        text-align: center;
+        padding: 1px;     
+        width: 92%;
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+
+    .leftimagebox{
+        float: left;
+        height: 100px;
+    }
+    
+    .rightimagebox{
+        float: right;
+        height:100px;
+    }
 }

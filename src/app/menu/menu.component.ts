@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  @ViewChild('stickyMenu') menuElement: ElementRef;
+  
+
   constructor() { }
+
+  sticky: boolean = false;
+
+  menuPosition: any;
+
+ngAfterViewInit(){
+    this.menuPosition = this.menuElement.nativeElement.offsetTop
+}
+
+@HostListener('window:scroll', ['$event'])
+    handleScroll(){
+        const windowScroll = window.pageYOffset;
+        if(windowScroll >= this.menuPosition){
+            this.sticky = true;
+        } else {
+            this.sticky = false;
+        }
+    }
 
    myFunction(): void {
     var x = document.getElementById("myTopnav");

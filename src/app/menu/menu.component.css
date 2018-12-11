@@ -46,6 +46,18 @@ p{
     display: none;
   } 
 
+  .sticky{
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    z-index: 10;
+    width: 100%;
+  }
+  
+  .content{
+    height: 200vh;
+  }
+
 
 
    /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
