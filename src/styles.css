@@ -1,3 +1,9 @@
+
+@font-face{
+    font-family: HelveticaNeue;
+    src :url(assets/HelveticaNeue.ttf) format("opentype");
+  }
+
 body{
     background-color: white;
     text-align: center;
@@ -5,6 +11,7 @@ body{
 
 p{
     color: black;
+    font-family: HelveticaNeue;
 }
 
 #navbar {
@@ -88,5 +95,9 @@ p{
     .rightimagebox{
         float: right;
         height:100px;
+    }
+
+    p{
+        font-size: small;
     }
 }

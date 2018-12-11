@@ -1,16 +1,41 @@
 .header{
     text-align: center;    
     width:100%;
-    background-image: url("/src/assets/Images/gradient.jpg")
-    
+    background-image: url("/src/assets/Images/gradient.jpg");
+    min-height: 310px;    
+}
+
+@keyframes titleanimation {
+    0% {width: 0px;}    
+    100% {width: 1000px;}
+}
+
+.headimg{
+    animation-name: titleanimation;
+    animation-duration: 2s;
+    animation-timing-function: linear;
 }
 
 
 
-
-@media screen and (max-width:900px){    
+@media screen and (max-width:900px){  
+    
+    @keyframes titleanimation {
+        0% {width: 0%;}    
+        100% {width: 100%;}    
+    }
 
     .headimg{
-        width:100%
+        width:100%;        
+        animation-name: titleanimation;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+    }
+
+    .header{
+        text-align: center;    
+        width:100%;
+        background-image: url("/src/assets/Images/gradient.jpg");
+        min-height: 110px;        
     }
 }

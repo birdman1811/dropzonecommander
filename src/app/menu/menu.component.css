@@ -1,8 +1,21 @@
+@keyframes menuflash{
+  0% {background-image: none; background-color: brown}
+  10% {background-image: url("../../assets/Images/menutexture.png"); }
+  20% {background-image: none;background-color: red}
+  30% {background-image: url("../../assets/Images/menutexture.png");}
+  40% {background-image: none;background-color: purple}
+  50% {background-image: url("../../assets/Images/menutexture.png");}
+  60% {background-image: none;background-color: yellow}
+  70% {background-image: url("../../assets/Images/menutexture.png");}
+  80% {background-image: none;background-color: blue}
+  90% {background-image: url("../../assets/Images/menutexture.png");}
+  100% {background-image: none; background-color: brown}
+}
+
 .menu{
     background-image: url("../../assets/Images/menutexture.png");
     width: 100%;
-    text-align: center;
-    
+    text-align: center;    
 }
 
 p{
@@ -15,6 +28,9 @@ p{
     background-image: url("../../assets/Images/menutexture.png");
     overflow: hidden;
     text-align: center;
+    background-color: black;
+    animation: menuflash;
+    animation-duration: 1s;
   }
   
   /* Style the links inside the navigation bar */
