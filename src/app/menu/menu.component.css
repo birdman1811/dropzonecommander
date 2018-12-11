@@ -37,7 +37,7 @@ p{
   
   /* Add an active class to highlight the current page */
   .active {
-    background-color: rgb(65, 64, 64);
+    background-color: rgb(5, 5, 5);
     color: white;
   }
   

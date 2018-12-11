@@ -41,6 +41,8 @@ ngAfterViewInit(){
 
   
 
+  
+
   ngOnInit() {
   }
 
