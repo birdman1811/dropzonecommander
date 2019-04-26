@@ -1,15 +1,15 @@
 @keyframes menuflash{
-  0% {background-image: none; background-color: brown}
+  0% {background-image: none; background-color: white; color: black;}
   10% {background-image: url("../../assets/Images/menutexture.png"); }
-  20% {background-image: none;background-color: red}
+  20% {background-image: none;background-color: black; color: white;}
   30% {background-image: url("../../assets/Images/menutexture.png");}
-  40% {background-image: none;background-color: purple}
+  40% {background-image: none;background-color: white; color: black;}
   50% {background-image: url("../../assets/Images/menutexture.png");}
-  60% {background-image: none;background-color: yellow}
+  60% {background-image: none;background-color: black; color: white;}
   70% {background-image: url("../../assets/Images/menutexture.png");}
-  80% {background-image: none;background-color: blue}
+  80% {background-image: none;background-color: white; color: black;}
   90% {background-image: url("../../assets/Images/menutexture.png");}
-  100% {background-image: none; background-color: brown}
+  100% {background-image: none; background-color: black; color: white;}
 }
 
 .menu{
@@ -30,7 +30,7 @@ p{
     text-align: center;
     background-color: black;
     animation: menuflash;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-delay: 1s;
   }
   

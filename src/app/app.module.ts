@@ -15,6 +15,7 @@ import { PhrComponent } from './phr/phr.component';
 import { ShaltariComponent } from './shaltari/shaltari.component';
 import { ResistanceComponent } from './resistance/resistance.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { FactionsComponent } from './factions/factions.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ResourcesComponent } from './resources/resources.component';
     PhrComponent,
     ShaltariComponent,
     ResistanceComponent,
-    ResourcesComponent
+    ResourcesComponent,
+    FactionsComponent
   ],
   imports: [
     BrowserModule,

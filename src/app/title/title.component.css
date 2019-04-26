@@ -1,8 +1,12 @@
 .header{
     text-align: center;    
     width:100%;
-    background-image: url("/src/assets/Images/gradient.jpg");
+    background-image: url("/src/assets/Images/gradient.jpg");    
     min-height: 310px;    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: hard-light;
+    background-color: black;
 }
 
 @keyframes titleanimation {
@@ -24,11 +28,11 @@
     
     @keyframes titleanimation {
         0% {width: 0%;}    
-        100% {width: 100%;}    
+        100% {width: 250px;}    
     }
 
     .headimg{
-        width:100%;        
+        width:250px;        
         animation-name: titleanimation;
         animation-duration: 2s;
         animation-timing-function: linear;
@@ -38,6 +42,6 @@
         text-align: center;    
         width:100%;
         background-image: url("/src/assets/Images/gradient.jpg");
-        min-height: 110px;        
+        min-height: 140px;        
     }
 }

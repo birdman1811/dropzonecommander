@@ -52,7 +52,7 @@ p{
 
 .videostrip{
     width: 100%;
-    background-image: url(/assets/Images/gradient.jpg);
+    background-color: black;
     text-align: center;
 }
 
