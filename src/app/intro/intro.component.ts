@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Lightbox } from  'ngx-lightbox';
+
 
 @Component({
   selector: 'app-intro',
