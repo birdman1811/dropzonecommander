@@ -36,7 +36,8 @@ import { FactionsComponent } from './factions/factions.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

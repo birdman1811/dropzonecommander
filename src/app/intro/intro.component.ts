@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Lightbox } from  'ngx-lightbox';
 
 @Component({
   selector: 'app-intro',
@@ -6,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./intro.component.css']
 })
 export class IntroComponent implements OnInit {
-
-  constructor() { }
+  
 
   ngOnInit() {
   }

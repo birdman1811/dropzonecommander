@@ -3,10 +3,9 @@
     width:100%;
     background-image: url("/src/assets/Images/gradient.jpg");    
     min-height: 310px;    
-    background-repeat: no-repeat;
-    background-position: center;
-    background-blend-mode: hard-light;
     background-color: black;
+    
+    
 }
 
 @keyframes titleanimation {
