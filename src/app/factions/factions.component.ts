@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FactionsComponent implements OnInit {
 
-  constructor() { }
+  selectedFaction: string;
+
+  constructor() {
+    this.selectedFaction = 'UCM';
+   }
 
   ngOnInit() {
+  }
+
+  SelectFaction(faction: string){
+    this.selectedFaction = faction;
   }
 
 }

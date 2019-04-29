@@ -1,0 +1,31 @@
+.factionselectbar{
+    background-color: black;    
+    text-align: center;
+    height: 135px;
+}
+
+.factionselectbar .faction :hover{
+    background-color: rgb(77, 77, 77);
+}
+
+.factionselectbar .factionbutton{
+    width: 19.7%;
+    color: white;
+    float: left;
+    border-color: azure;
+    border-style: ridge;
+    border-width: 1px;
+    margin-right: 1px; 
+    margin-left: 1px; 
+    font-size: large  
+}
+
+
+.factionselectbar .factionbutton p{
+    color: white;
+}
+
+.factionselectbar .factionbutton .factionicon{
+    height: 100px;
+    padding: 5px;
+}

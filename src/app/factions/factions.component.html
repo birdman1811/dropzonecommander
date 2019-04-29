@@ -1,10 +1,65 @@
-<p>
-  factions works!
-</p>
+<div class = 'factionselectbar'>
+  <div class = 'faction' (click)="SelectFaction('UCM')">
+  <div class = 'factionbutton'>    
+    <img class = 'factionicon' src = '../../assets/Images/factionicons/UCM Green.png' alt = 'UCM Logo'>
+    <br>
+    United Colonies of Mankind
+  </div>
+</div>
+<div class = 'faction' (click)="SelectFaction('Scourge')">
+  <div class = 'factionbutton'>
+    <img class = 'factionicon' src = '../../assets/Images/factionicons/Scourge Purple.png' alt = 'Scourge Logo'>
+    <br>
+    Scourge
+  </div>
+</div>
+<div class = 'faction' (click)="SelectFaction('PHR')">
+  <div class = 'factionbutton'>
+    <img class = 'factionicon' src = '../../assets/Images/factionicons/PHR Yellow.png' alt = 'PHR Logo'>
+    <br>
+    Post Human Republic
+  </div>
+</div>
+<div class = 'faction' (click)="SelectFaction('Shaltari')">
+  <div class = 'factionbutton'>
+    <img class = 'factionicon' src = '../../assets/Images/factionicons/Shaltari Orange.png' alt = 'Shaltari Logo'>
+    <br>
+    Shaltari Tribes
+  </div>
+</div>
+<div class = 'faction' (click)="SelectFaction('Resistance')">
+  <div class = 'factionbutton'>
+    <img class = 'factionicon' src = '../../assets/Images/factionicons/Resistance Blue.png' alt = 'Resistance Logo'>
+    <br>
+    Resistance
+  </div>
+</div>
+</div>
 
-<app-ucm></app-ucm>
-<app-scourge></app-scourge>
-<app-phr></app-phr>
-<app-shaltari></app-shaltari>
-<app-resistance></app-resistance>
+<div *ngIf = 'selectedFaction'>
+
+  <div *ngIf = "selectedFaction == 'UCM'">
+      <app-ucm></app-ucm>
+  </div>
+
+  <div *ngIf = "selectedFaction == 'Scourge'">
+      <app-scourge></app-scourge>
+  </div>
+
+  <div *ngIf = "selectedFaction == 'PHR'">
+      <app-phr></app-phr>
+  </div>
+    
+  <div *ngIf = "selectedFaction == 'Shaltari'">
+      <app-shaltari></app-shaltari>
+  </div>
+    
+  <div *ngIf = "selectedFaction == 'Resistance'">
+      <app-resistance></app-resistance>
+  </div> 
+    
+
+</div>
+
+
 

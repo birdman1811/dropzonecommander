@@ -4,14 +4,20 @@
     src :url(assets/HelveticaNeue.ttf) format("opentype");
   }
 
+  @font-face{
+      font-family: VenusRisingRegular;
+      src :url(assets/venusrisingrg.ttf) format("opentype");
+  }
+
 body{
     background-color: white;
     text-align: center;
+    min-height: 300px;
 }
 
 p{
     color: black;
-    font-family: HelveticaNeue;
+    font-family: 'HelveticaNeue';
 }
 
 #navbar {
@@ -24,6 +30,11 @@ p{
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
+}
+
+.title{
+    font-size: xx-large;
+    font-family: 'VenusRisingRegular'
 }
 
 .introtext{
