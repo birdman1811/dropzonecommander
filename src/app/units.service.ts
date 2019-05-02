@@ -10,7 +10,7 @@ import { Unit } from './unit';
 export class UnitsService {
 
   getUnits(faction): Observable<Unit[]> {
-    return this.http.get<Unit[]>('https://thetrolltrader.com:3001/units/'+faction.Name)
+    return this.http.get<Unit[]>('https://thetrolltrader.com:3001/units/'+faction.name)
   }
 
   constructor( 

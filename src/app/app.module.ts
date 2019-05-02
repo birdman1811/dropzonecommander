@@ -1,5 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'; 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider'; 
+import { MatDialogModule } from '@angular/material';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { GestureConfig } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { TitleComponent } from './title/title.component';
@@ -16,6 +22,15 @@ import { ShaltariComponent } from './shaltari/shaltari.component';
 import { ResistanceComponent } from './resistance/resistance.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { FactionsComponent } from './factions/factions.component';
+import { UnitphotosComponent } from './unitphotos/unitphotos.component';
+
+declare var Hammer: any;
+@Injectable()
+export class HammerConfig extends GestureConfig  {
+  buildHammer(element: HTMLElement) {
+    return new GestureConfig({touchAction: 'pan-y'}).buildHammer(element);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -32,14 +47,24 @@ import { FactionsComponent } from './factions/factions.component';
     ShaltariComponent,
     ResistanceComponent,
     ResourcesComponent,
-    FactionsComponent
+    FactionsComponent,
+    UnitphotosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatDialogModule,
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

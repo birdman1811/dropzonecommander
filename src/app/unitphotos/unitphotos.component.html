@@ -1,0 +1,16 @@
+<p class = "unitname">{{viewedUnit.Name}}</p>
+<button (click) = "prevunit()">Previous Unit</button>
+<p><img class  = "unitphoto" src = {{viewedUnit.GetPicture()}}></p>
+<button (click) = "nextunit()">Next Unit</button>
+<br>
+<mat-slider thumbLabel 
+[displayWith]="formatLabel" 
+tickInterval='1' 
+min=1
+max={{definedUnits.length}} 
+step="1.0" 
+value={{viewedUnitNumber}}
+#amountSlider
+(input)="pitch($event)" ></mat-slider>
+
+

@@ -1,4 +1,6 @@
 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @font-face{
     font-family: HelveticaNeue;
     src :url(assets/HelveticaNeue.ttf) format("opentype");
@@ -54,6 +56,11 @@ p{
 .rightimagebox{
     float: right;
     height:200px;
+    padding: 5px;
+}
+
+.centralimagebox{
+    height: 400px;
     padding: 5px;
 }
 

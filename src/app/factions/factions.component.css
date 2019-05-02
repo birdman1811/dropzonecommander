@@ -2,6 +2,7 @@
     background-color: black;    
     text-align: center;
     height: 135px;
+    padding: 10px;
 }
 
 .factionselectbar .faction :hover{
@@ -11,10 +12,7 @@
 .factionselectbar .factionbutton{
     width: 19.7%;
     color: white;
-    float: left;
-    border-color: azure;
-    border-style: ridge;
-    border-width: 1px;
+    float: left;   
     margin-right: 1px; 
     margin-left: 1px; 
     font-size: large  

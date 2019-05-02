@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Faction } from '../faction';
 
 @Component({
   selector: 'app-resistance',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResistanceComponent implements OnInit {
 
-  constructor() { }
+  @Input() faction: Faction;
+
+  constructor() {  
+    
+   }
 
   ngOnInit() {
+    this.faction.name = "Resistance"    
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Faction } from '../faction';
 
 @Component({
   selector: 'app-factions',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class FactionsComponent implements OnInit {
 
   selectedFaction: string;
+  faction: Faction = new Faction();
+  
 
   constructor() {
-    this.selectedFaction = 'UCM';
+    this.selectedFaction = 'UCM';    
    }
 
   ngOnInit() {
@@ -18,6 +21,8 @@ export class FactionsComponent implements OnInit {
 
   SelectFaction(faction: string){
     this.selectedFaction = faction;
+    this.faction.name = this.selectedFaction
+  
   }
 
 }

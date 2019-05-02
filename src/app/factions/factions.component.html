@@ -36,26 +36,27 @@
 </div>
 </div>
 
+
 <div *ngIf = 'selectedFaction'>
 
   <div *ngIf = "selectedFaction == 'UCM'">
-      <app-ucm></app-ucm>
+      <app-ucm [faction]="faction"></app-ucm>
   </div>
 
   <div *ngIf = "selectedFaction == 'Scourge'">
-      <app-scourge></app-scourge>
+      <app-scourge [faction]="faction"></app-scourge>
   </div>
 
   <div *ngIf = "selectedFaction == 'PHR'">
-      <app-phr></app-phr>
+      <app-phr [faction]="faction"></app-phr>
   </div>
     
   <div *ngIf = "selectedFaction == 'Shaltari'">
-      <app-shaltari></app-shaltari>
+      <app-shaltari [faction]="faction"></app-shaltari>
   </div>
     
   <div *ngIf = "selectedFaction == 'Resistance'">
-      <app-resistance></app-resistance>
+      <app-resistance [faction]="faction"></app-resistance>
   </div> 
     
 

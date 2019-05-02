@@ -1,6 +1,6 @@
 export class Unit {
 
-    name: string;
+    Name: string;
     faction: string;
     picture: string;
 
@@ -9,6 +9,6 @@ export class Unit {
     }
 
     GetPicture(): string{
-        return 'https://thetrolltrader.com/dzcbuilderbeta/assets/images/unitphotos/' + this.faction + '/' + this.name + '.jpg'
+        return 'https://thetrolltrader.com/dzcbuilderbeta/assets/images/unitphotos/' + this.faction + '/' + this.Name + '.jpg'
     }
 }
