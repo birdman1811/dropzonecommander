@@ -1,3 +1,7 @@
 .title{
-    color: #6b3e91
+    color: #6b3e91;
+    background-color: rgba(255, 255, 255, 0.900);
+    height: 80px;
+    padding: 10px;
+    padding-top: 20px;
 }

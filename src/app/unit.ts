@@ -9,6 +9,7 @@ export class Unit {
     }
 
     GetPicture(): string{
-        return 'https://thetrolltrader.com/dzcbuilderbeta/assets/images/unitphotos/' + this.faction + '/' + this.Name + '.jpg'
+        this.picture = 'https://thetrolltrader.com/dzcbuilderbeta/assets/images/unitphotos/' + this.faction + '/' + this.Name + '.jpg';
+        return this.picture;
     }
 }

@@ -1,6 +1,8 @@
 <p class = "unitname">{{viewedUnit.Name}}</p>
 <button (click) = "prevunit()">Previous Unit</button>
-<p><img class  = "unitphoto" src = {{viewedUnit.GetPicture()}}></p>
+<img class  = "unitphotosmall" src = {{prevUnit.picture}}>
+<img class  = "unitphoto" src = {{viewedUnit.picture}}>
+<img class  = "unitphotosmall" src = {{nextUnit.picture}}>
 <button (click) = "nextunit()">Next Unit</button>
 <br>
 <mat-slider thumbLabel 

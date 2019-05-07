@@ -5,6 +5,7 @@ a{
 body{
     text-align: center;
     background-color: rgb(12, 12, 12);
+    background-image: none;
     min-height: 150px;
     padding: 10px;
 }

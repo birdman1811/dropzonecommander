@@ -1,12 +1,16 @@
 .header{
     text-align: center;    
     width:100%;       
-    min-height: 250px;    
-    background-color: black;   
+    min-height: 250px;         
+    background-image: url('/assets/Images/GreyBackground.png');  
+}
+
+body{
+    background-image: url('/assets/Images/GreyBackground.png');
 }
 
 .subheader{
-    background-color: black;
+    background-color: rgb(230, 230, 230);
     height:50px;
 }
 
