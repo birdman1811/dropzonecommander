@@ -40,8 +40,8 @@ export class UnitphotosComponent implements OnInit {
 
   ngOnInit() {    
     this.getAllUnits();
-    this.ChangeImage();
-
+    //this.ChangeImage();
+    this.UpdatePrevNext();
   }
 
   pitch(event: any){
@@ -55,12 +55,18 @@ export class UnitphotosComponent implements OnInit {
       this.viewedUnitNumber = this.viewedUnitNumber -1;
       this.viewedUnit = this.definedUnits[this.viewedUnitNumber]
     }
+
+    else{
+      this.viewedUnitNumber = this.definedUnits.length -1;
+      this.viewedUnit = this.definedUnits[this.viewedUnitNumber];
+    }
     this.UpdatePrevNext();
   }
 
   nextunit(){
     if (this.viewedUnitNumber >= this.definedUnits.length-1){
-      
+      this.viewedUnitNumber = 0;
+      this.viewedUnit = this.definedUnits[0];
     }
     else{
       this.viewedUnitNumber = this.viewedUnitNumber +1;
@@ -72,6 +78,7 @@ export class UnitphotosComponent implements OnInit {
   ChangeImage(){
     const source = interval(5000);
     const subscribe = source.subscribe(val => this.ScrollImage());    
+    
   }
 
   ScrollImage(){
