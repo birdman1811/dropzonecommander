@@ -13,11 +13,12 @@
 
 body{
     
-    background-image: url("/assets/Images/planet-1494403454Zmz.jpg");
+    background-image: url("/assets/Images/BFEcover.jpg");
     text-align: center;
     min-height: 300px;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position: center;
     
   
 }
