@@ -3,6 +3,12 @@
     background-color: rgba(255, 255, 255, 0.900);
     height: 80px;
     padding: 10px;
+    padding-top: 20px;    
+}
+
+.subtitle{
+    color: #3b9235;    
+    height: 80px;
+    padding: 10px;
     padding-top: 20px;
-    
 }

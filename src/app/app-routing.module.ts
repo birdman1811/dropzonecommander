@@ -10,15 +10,15 @@ import { FactionsComponent } from '../app/factions/factions.component';
 const routes: Routes = [
   {path: '', component: IntroComponent},
   {path: 'home', component: IntroComponent},
-  //{path: 'about', component: AboutComponent},
-  //{path: 'phr', component: FactionsComponent},
-  //{path: 'playing', component: PlayingComponent},
-  //{path: 'resistance', component: FactionsComponent},
-  //{path: 'resources', component: ResourcesComponent},
-  //{path: 'scourge', component: FactionsComponent},
-  //{path: 'shaltari', component: FactionsComponent},
-  //{path: 'ucm', component: FactionsComponent},
-  //{path: 'factions', component: FactionsComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'phr', component: FactionsComponent},
+  {path: 'playing', component: PlayingComponent},
+  {path: 'resistance', component: FactionsComponent},
+  {path: 'resources', component: ResourcesComponent},
+  {path: 'scourge', component: FactionsComponent},
+  {path: 'shaltari', component: FactionsComponent},
+  {path: 'ucm', component: FactionsComponent},
+  {path: 'factions', component: FactionsComponent},
 
 ]
 

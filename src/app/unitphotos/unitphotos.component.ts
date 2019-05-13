@@ -125,12 +125,14 @@ export class UnitphotosComponent implements OnInit {
 
   setunitPhotos(){
     for (let unit of this.units){
+      if (unit.Category != 'Unreleased'){
       var newUnit = new Unit();
       newUnit.faction = this.faction.name;
       newUnit.Name = unit.Name;
       newUnit.GetPicture();
       this.definedUnits.push(newUnit);
     }
+  }
     this.viewedUnit = this.definedUnits[0]
     this.nextUnit = this.definedUnits[1];
     this.prevUnit = this.definedUnits[this.definedUnits.length-1];

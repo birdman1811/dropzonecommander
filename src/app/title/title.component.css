@@ -61,7 +61,7 @@ body{
     .header{
         text-align: center;    
         width:100%;
-        background-image: url("/src/assets/Images/gradient.jpg");
+        background-image: url('/assets/Images/GreyBackground.png');
         min-height: 140px;        
     }
 }

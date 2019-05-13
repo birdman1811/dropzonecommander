@@ -3,6 +3,7 @@ export class Unit {
     Name: string;
     faction: string;
     picture: string;
+    Category: string;
 
     constructor(){
 

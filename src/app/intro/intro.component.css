@@ -1,3 +1,9 @@
 .titleimage{
     height: 460px;
 }
+
+@media screen and (max-width:900px){
+    .titleimage{
+        width: 100%;
+    }
+}

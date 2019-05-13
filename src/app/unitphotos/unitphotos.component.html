@@ -5,8 +5,7 @@
 <img class  = "unitphotosmall" src = {{nextUnit.picture}} (click) = "nextunit()">
 <button (click) = "nextunit()">Next Unit</button>
 <br>
-<mat-slider thumbLabel 
-[displayWith]="formatLabel" 
+<mat-slider thumbLabel  
 tickInterval='1' 
 min=1
 max={{definedUnits.length}} 
