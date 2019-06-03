@@ -12,6 +12,11 @@ mat-slider{
     
 } 
 
+.table{
+    display: grid;
+    grid-template-columns: 12.5% 25% 25% 25% 12.5%;
+}
+
 .unitphoto{
     width: 250px;
     border-color: darkslategrey;
@@ -26,9 +31,27 @@ mat-slider{
     margin-top: 50px;
 }
 
-
-
 .unitname{
     font-family: 'VenusRisingRegular'
+}
+
+@media screen and (max-width:600px){
+
+    .unitphoto{
+        width: 80px;
+        border-color: darkslategrey;
+        border-style: double;
+    }
+    
+    .unitphotosmall{
+        width:50px;
+        border-color: darkslategrey;
+        border-style: double;        
+    }
+
+    button{
+        font-size: xx-small;
+    }
+
 }
 
