@@ -27,6 +27,7 @@ export class UnitphotosComponent implements OnInit {
   prevUnitNumber: number;
   nextUnit: Unit;
   nextUnitNumber: number;
+  factionName: string;
 
   constructor(
     private unitService: UnitsService,
@@ -40,7 +41,7 @@ export class UnitphotosComponent implements OnInit {
     this.prevUnit = new Unit();    
     this.prevUnitNumber = 0;
     this.nextUnit = new Unit();
-    this.nextUnitNumber = 0;    
+    this.nextUnitNumber = 0;       
   }
 
   ngOnInit() {    
@@ -127,6 +128,7 @@ export class UnitphotosComponent implements OnInit {
       this.units = units;
       this.setunitPhotos();      
     });
+    this.factionName = this.faction.name; 
   }
 
   setunitPhotos(){
@@ -168,12 +170,13 @@ export class UnitphotosComponent implements OnInit {
       this.transportService.setTransports(newUnit);
       this.SetTransports(newUnit);    
       this.transportService.SetTransportIcons(newUnit);
-      this.definedUnits.push(newUnit);      
+      this.definedUnits.push(newUnit);          
     }
   }
     this.viewedUnit = this.definedUnits[0]
     this.nextUnit = this.definedUnits[1];
-    this.prevUnit = this.definedUnits[this.definedUnits.length-1];   
+    this.prevUnit = this.definedUnits[this.definedUnits.length-1]; 
+    this.factionName = newUnit.faction;  
   }
 
   SetTransports(unit: Unit){      
@@ -184,7 +187,7 @@ export class UnitphotosComponent implements OnInit {
     const dialogRef = this.unitDialog.open(UnitlistComponent,
       {
         hasBackdrop: true,
-        data: {units: this.definedUnits, faction: "UCM"},
+        data: {units: this.definedUnits, faction: this.faction.name},
         panelClass: "armysheetbox",
         backdropClass: "backdropcustom",
       })
