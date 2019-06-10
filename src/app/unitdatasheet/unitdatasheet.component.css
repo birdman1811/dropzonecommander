@@ -1,0 +1,347 @@
+li{
+    list-style: none;
+}
+
+.unitstatsheet{
+    background-color: white;
+    border-style: outset;
+    border-color: black;
+    border-width: 1px;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .thumbnail{
+    width: 100%;
+    border-right-width: 1px;
+    border-right-style: inset;
+    border-right-color: grey;
+}
+
+.unitstatsheet .thumbnail .unitimage{
+    width: 100%;
+}
+
+.unitstatsheet .imagestats{
+    display: grid;
+    grid-template-columns: 20% 80%;    
+}
+
+.unitstatsheet .imagestats .toprows{
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 100%;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .toprow{
+    background-color: cadetblue;
+    display: grid;
+    grid-template-columns: 15% 35% 10% 20% 20%;
+    border-width: 1px;
+    border-style: inset;
+    border-color: grey;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .toprow div {
+    border-right-width: 1px;
+    border-right-style: inset;
+    border-right-color: grey; 
+    word-wrap: break-word;   
+}
+
+.transporticon{
+    width: 25px;
+}
+
+.transportlabel{
+    font-size: 30px;
+    margin-bottom: 5px; 
+    word-wrap: break-word;   
+}
+
+.unitstatsheet .secondrow{
+    display: grid;
+    grid-template-columns: 12% 12% 12% 12% 17% 35%;
+    border-top-width: 1px;
+    border-top-style: inset;
+    border-top-color: grey; 
+    word-wrap: break-word;
+}
+
+.unitstatsheet .secondrow div{
+    border-right-width: 1px;
+    border-right-style: inset;
+    border-right-color: grey; 
+    word-wrap: break-word;        
+}
+
+.unitstatsheet .behemothstats{
+    display: grid;
+    grid-template-columns: 15% 45% 39%;
+    grid-template-rows: auto auto auto auto;
+    border-top-width: 1px;
+    border-top-style: inset;
+    border-top-color: grey;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .behemothstats .hardpoint{
+    width: 50px;
+    border-width: 1px;
+    border-style: inset;
+    border-color: grey;  
+    background-color: lightblue;
+    word-wrap: break-word;
+    
+    float:left;
+    height: 55px;
+}
+
+.unitstatsheet .behemothstats .row{
+    width: 100%;
+    clear: left;    
+    padding: 5px;
+    border-top-width: 1px;
+    border-top-style: inset;
+    border-top-color: grey;
+    min-height: 60px;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .behemothstats .header{
+    background-color: darkgray;
+    border-width: 1px;
+    border-style: inset;
+    border-color: grey;
+    word-wrap: break-word;
+}
+
+
+
+.unitstatsheet .thirdrow{
+    background-color: rgb(160, 160, 160);
+    border-width: 1px;
+    border-style: inset;
+    border-color: grey;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .fourthrow{
+    text-align: left;
+    border-width: 1px;
+    border-style: groove;
+    border-color: grey;
+    padding: 2px;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .fifthrow{
+    background-color: rgb(160, 160, 160);
+    display: grid;
+    grid-template-columns: 12% 9% 9% 10% 10% 10% 10% 10% 20%;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .fifthrow div{
+    border-right-width: 1px;
+    border-right-style: inset;
+    border-right-color: grey;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .fifthrow .blank{
+    background-color:white;
+    border-right-width: 1px;
+    border-right-style: inset;
+    border-right-color: grey;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .weapon{
+    display: grid;
+    grid-template-columns: 12% 9% 9% 10% 10% 10% 10% 10% 20%;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .weapon div{
+    border-right-width: 1px;
+    border-right-style: inset;
+    border-right-color: grey;
+    border-bottom-width: 1px;
+    border-bottom-style: inset;
+    border-bottom-color: grey;
+    word-wrap: break-word;
+}
+
+.smltransporticon{
+    width: 15px;
+}
+
+.unitstatsheet .poststats{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    word-wrap: break-word;
+}
+
+.unitstatsheet .poststats .column{
+    border-style: inset;
+    border-width: 1px;
+    border-color: grey;
+    word-wrap: break-word;
+}
+
+@media screen and (max-width:1000px){
+
+    .unitstatsheet{
+        background-color: white;
+        border-style: groove;
+        border-color: black;
+        border-width: 1px;
+        padding-bottom: 1px;
+        margin-bottom: 1px;
+        font-size:xx-small;
+    }
+    
+    .unitstatsheet .toprow{
+        background-color: cadetblue;
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        border-width: 1px;
+        border-style: groove;
+        border-color: black;
+        font-size:xx-small;
+    }
+    
+    .unitstatsheet .toprow div {
+        border-right-width: 1px;
+        border-right-style: ridge;
+        border-right-color: black;
+        font-size:xx-small;
+    }
+    
+    .unitstatsheet .secondrow{
+        display: grid;
+        grid-template-columns: 10% 10% 10% 10% 15% 45%;
+        font-size:xx-small;
+    }
+    
+    .unitstatsheet .secondrow div{
+        border-right-width: 1px;
+        border-right-style: ridge;
+        border-right-color: black;
+        font-size:xx-small;    
+    }
+    
+    .unitstatsheet .thirdrow{
+        background-color: rgb(160, 160, 160);
+        border-width: 1px;
+        border-style: groove;
+        border-color: black;
+        text-align: left;
+        font-size:xx-small;
+    }
+    
+    .unitstatsheet .fourthrow{
+        text-align: left;
+        border-width: 1px;
+        border-style: groove;
+        border-color: black;
+        padding: 1px;
+        font-size:xx-small;
+    }
+    
+    .unitstatsheet .fifthrow{
+        background-color: rgb(160, 160, 160);
+        display: grid;
+        grid-template-columns: 12% 9% 9% 10% 10% 10% 10% 10% 20%;
+        font-size:xx-small;
+    }
+    
+    .unitstatsheet .fifthrow div{
+        border-right-width: 1px;
+        border-right-style: groove;
+        border-right-color: black;
+        font-size:xx-small;
+        word-wrap: break-word;
+    }
+    
+    .unitstatsheet .fifthrow .blank{
+        background-color:white;
+        border-right-width: 1px;
+        border-right-style: groove;
+        border-right-color: black;
+        font-size:xx-small;
+        word-wrap: break-word;
+    }
+    
+    .unitstatsheet .weapon{
+        display: grid;
+        grid-template-columns: 12% 9% 9% 10% 10% 10% 10% 10% 20%;
+        font-size:xx-small;
+    }
+    
+    .unitstatsheet .weapon div{
+        border-right-width: 1px;
+        border-right-style: groove;
+        border-right-color: black;
+        border-bottom-width: 1px;
+        border-bottom-style: groove;
+        border-bottom-color: black;
+        font-size:xx-small;
+        word-wrap: break-word;
+    }
+
+    button{
+        font-size:x-small;
+    }
+
+    .transporticon{
+        width: 15px;
+    }
+
+    .smltransporticon{
+        width: 10px;
+    }
+    
+    .transportlabel{
+        font-size: 20px;
+        margin-bottom: 2px;    
+    }
+
+    .unitstatsheet .thumbnail{
+        width: 100%
+    }
+    
+    .unitstatsheet .thumbnail .unitimage{
+        width: 100px;
+    }
+}
+
+@media screen and (max-width:600px){
+    .unitstatsheet .poststats{
+        display: grid;
+        grid-auto-rows: auto auto;
+        grid-template-columns: 100% ;
+    }
+    
+    .unitstatsheet .poststats .column{
+        border-style: groove;
+        border-width: 1px;
+        border-color: black;
+    }
+
+    .unitstatsheet .thumbnail .unitimage{
+        width: 50px;
+    }
+    
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+    button{
+        height: 30px;
+    } 
+  }

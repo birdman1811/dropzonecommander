@@ -1,3 +1,4 @@
+<button (click)="OpenUnitPrintout()">Print all {{faction.name}} Units</button>
 <p class = "unitname">{{viewedUnit.Name}}</p>
 <div class = "table">
 <div><button (click) = "prevunit()">Previous Unit</button></div>
@@ -6,6 +7,7 @@
 <div><img class  = "unitphotosmall" src = {{nextUnit.picture}} (click) = "nextunit()"></div>
 <div><button (click) = "nextunit()">Next Unit</button></div>
 </div>
+<app-unitdatasheet [unit]="viewedUnit"></app-unitdatasheet>
 <mat-slider thumbLabel  
 tickInterval='1' 
 min=1

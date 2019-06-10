@@ -44,9 +44,7 @@ mat-slider{
     }
     
     .unitphotosmall{
-        width:50px;
-        border-color: darkslategrey;
-        border-style: double;        
+        display: none;       
     }
 
     button{

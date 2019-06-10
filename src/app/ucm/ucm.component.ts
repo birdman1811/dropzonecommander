@@ -9,13 +9,16 @@ import { Faction } from '../faction';
 export class UcmComponent implements OnInit {
 
 @Input() faction: Faction;
+  
 
   constructor() {  
     
    }
 
   ngOnInit() {
-    this.faction.name = "UCM"    
-  }
+    this.faction.name = "UCM"   
+    }
+
+  
 
 }

@@ -1,0 +1,946 @@
+<mat-dialog-content>
+  <button (click)="printHTML()">Print</button><button (click)="CopyToClipboard()">Copy to Clipboard</button>
+  <div id = "print" #content> 
+  <h1>All {{faction}} Units</h1>
+  
+  Please be aware that Dropzone Commander unit stats are a living document so this is subject to change 
+    usually every 6 months. A post will be made on the Community site: https://community.ttcombat.com when 
+    changes are made.
+  
+  <H2>Command Units</H2>
+  <li *ngFor = "let unit of commandUnits" style = "list-style-type: none; margin-bottom: 10px;">    
+   <div style = "border: 1px solid black; page-break-inside: avoid;">
+        <div style = "page-break-inside: avoid;">
+      <table>
+      <tr style = "border: 1px solid black;" >
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+        <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+      </tr>      
+    </table>
+    <table>
+      <tr>
+        <th style = "padding: 10px; background-color: grey;">MV</th>
+        <th style = "padding: 10px; background-color: grey;">CM</th>
+        <th style = "padding: 10px; background-color: grey;">A</th>
+        <th style = "padding: 10px; background-color: grey;">D</th>
+        <th style = "padding: 10px; background-color: grey;">TYPE</th>
+        <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+      </tr>
+      <tr>
+        <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+        <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+        <td style = "padding: 10px;">{{unit.Armour}}</td>
+        <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+        <td style = "padding: 10px;">{{unit.Type}}</td>
+        <td style = "padding: 10px;">{{unit.Special}}</td>
+      </tr>
+    </table>
+    <div *ngIf = "unit.alternateStats == true">
+        <table>
+            <tr style = "border: 1px solid black;" >
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+            </tr>      
+          </table>
+          <table>
+            <tr>
+              <th style = "padding: 10px; background-color: grey;">MV</th>
+              <th style = "padding: 10px; background-color: grey;">CM</th>
+              <th style = "padding: 10px; background-color: grey;">A</th>
+              <th style = "padding: 10px; background-color: grey;">D</th>
+              <th style = "padding: 10px; background-color: grey;">TYPE</th>
+              <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+            </tr>
+            <tr>
+              <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+            </tr>
+          </table>
+    </div>
+    
+  <div style = "border: 1px solid black;">
+  <table>
+      <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+          <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+      <tr>            
+          <th style = "padding: 5px; background-color: grey;">Name</th>
+        <th style = "padding: 5px; background-color: grey;">M&F</th>
+        <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+        <th style = "padding: 5px; background-color: grey;">Rf</th>
+        <th style = "padding: 5px; background-color: grey;">Rc</th>
+        <th style = "padding: 5px; background-color: grey;">Shots</th>
+        <th style = "padding: 5px; background-color: grey;">Acc</th>
+        <th style = "padding: 5px; background-color: grey;">Energy</th>
+        <th style = "padding: 5px; background-color: grey;">Special</th>
+        </tr>
+    
+      <tr>
+          <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+          <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+      </tr>
+    </div>
+    </li>
+    
+  </table>
+  </div>
+  <table>
+      <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+  </table>    
+  </div>
+  </div>
+  </li> 
+  
+  <H2>Standard</H2>
+  <li *ngFor = "let unit of standardUnits" style = "list-style-type: none; margin-bottom: 10px; page-break-inside: avoid;">    
+   <div style = "border: 1px solid black;">
+        <div style = "page-break-inside: avoid;">
+      <table>
+      <tr style = "border: 1px solid black;" >
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+        <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+      </tr>      
+    </table>
+    <table>
+      <tr>
+        <th style = "padding: 10px; background-color: grey;">MV</th>
+        <th style = "padding: 10px; background-color: grey;">CM</th>
+        <th style = "padding: 10px; background-color: grey;">A</th>
+        <th style = "padding: 10px; background-color: grey;">D</th>
+        <th style = "padding: 10px; background-color: grey;">TYPE</th>
+        <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+      </tr>
+      <tr>
+        <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+        <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+        <td style = "padding: 10px;">{{unit.Armour}}</td>
+        <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+        <td style = "padding: 10px;">{{unit.Type}}</td>
+        <td style = "padding: 10px;">{{unit.Special}}</td>
+      </tr>
+    </table>
+    <div *ngIf = "unit.alternateStats == true">
+        <table>
+            <tr style = "border: 1px solid black;" >
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+            </tr>      
+          </table>
+          <table>
+            <tr>
+              <th style = "padding: 10px; background-color: grey;">MV</th>
+              <th style = "padding: 10px; background-color: grey;">CM</th>
+              <th style = "padding: 10px; background-color: grey;">A</th>
+              <th style = "padding: 10px; background-color: grey;">D</th>
+              <th style = "padding: 10px; background-color: grey;">TYPE</th>
+              <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+            </tr>
+            <tr>
+              <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+            </tr>
+          </table>
+    </div>
+    
+  <div style = "border: 1px solid black;">
+  <table>
+      <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+          <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+      <tr>            
+          <th style = "padding: 5px; background-color: grey;">Name</th>
+        <th style = "padding: 5px; background-color: grey;">M&F</th>
+        <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+        <th style = "padding: 5px; background-color: grey;">Rf</th>
+        <th style = "padding: 5px; background-color: grey;">Rc</th>
+        <th style = "padding: 5px; background-color: grey;">Shots</th>
+        <th style = "padding: 5px; background-color: grey;">Acc</th>
+        <th style = "padding: 5px; background-color: grey;">Energy</th>
+        <th style = "padding: 5px; background-color: grey;">Special</th>
+        </tr>
+    
+      <tr>
+          <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+          <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+      </tr>
+    </div>
+    </li>
+    
+  </table>
+  </div>
+  <table>
+      <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+  </table>    
+  </div>
+  </div>
+  </li> 
+  
+  <H2>Troops</H2>
+  <li *ngFor = "let unit of troopsUnits" style = "list-style-type: none; margin-bottom: 10px;">    
+   <div style = "border: 1px solid black; page-break-inside: avoid;">
+        <div style = "page-break-inside: avoid;">
+      <table>
+      <tr style = "border: 1px solid black;" >
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+        <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+      </tr>      
+    </table>
+    <table>
+      <tr>
+        <th style = "padding: 10px; background-color: grey;">MV</th>
+        <th style = "padding: 10px; background-color: grey;">CM</th>
+        <th style = "padding: 10px; background-color: grey;">A</th>
+        <th style = "padding: 10px; background-color: grey;">D</th>
+        <th style = "padding: 10px; background-color: grey;">TYPE</th>
+        <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+      </tr>
+      <tr>
+        <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+        <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+        <td style = "padding: 10px;">{{unit.Armour}}</td>
+        <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+        <td style = "padding: 10px;">{{unit.Type}}</td>
+        <td style = "padding: 10px;">{{unit.Special}}</td>
+      </tr>
+    </table>
+    <div *ngIf = "unit.alternateStats == true">
+        <table>
+            <tr style = "border: 1px solid black;" >
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+            </tr>      
+          </table>
+          <table>
+            <tr>
+              <th style = "padding: 10px; background-color: grey;">MV</th>
+              <th style = "padding: 10px; background-color: grey;">CM</th>
+              <th style = "padding: 10px; background-color: grey;">A</th>
+              <th style = "padding: 10px; background-color: grey;">D</th>
+              <th style = "padding: 10px; background-color: grey;">TYPE</th>
+              <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+            </tr>
+            <tr>
+              <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+            </tr>
+          </table>
+    </div>
+    
+  <div style = "border: 1px solid black;">
+  <table>
+      <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+          <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+      <tr>            
+          <th style = "padding: 5px; background-color: grey;">Name</th>
+        <th style = "padding: 5px; background-color: grey;">M&F</th>
+        <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+        <th style = "padding: 5px; background-color: grey;">Rf</th>
+        <th style = "padding: 5px; background-color: grey;">Rc</th>
+        <th style = "padding: 5px; background-color: grey;">Shots</th>
+        <th style = "padding: 5px; background-color: grey;">Acc</th>
+        <th style = "padding: 5px; background-color: grey;">Energy</th>
+        <th style = "padding: 5px; background-color: grey;">Special</th>
+        </tr>
+    
+      <tr>
+          <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+          <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+      </tr>
+    </div>
+    </li>
+    
+  </table>
+  </div>
+  <table>
+      <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+  </table>    
+  </div>
+  </div>
+  </li> 
+  
+  <H2>Exotic</H2>
+  <li *ngFor = "let unit of exoticUnits" style = "list-style-type: none; margin-bottom: 10px;">    
+   <div style = "border: 1px solid black; page-break-inside: avoid;">
+        <div style = "page-break-inside: avoid;">
+      <table>
+      <tr style = "border: 1px solid black;" >
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+        <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+      </tr>      
+    </table>
+    <table>
+      <tr>
+        <th style = "padding: 10px; background-color: grey;">MV</th>
+        <th style = "padding: 10px; background-color: grey;">CM</th>
+        <th style = "padding: 10px; background-color: grey;">A</th>
+        <th style = "padding: 10px; background-color: grey;">D</th>
+        <th style = "padding: 10px; background-color: grey;">TYPE</th>
+        <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+      </tr>
+      <tr>
+        <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+        <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+        <td style = "padding: 10px;">{{unit.Armour}}</td>
+        <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+        <td style = "padding: 10px;">{{unit.Type}}</td>
+        <td style = "padding: 10px;">{{unit.Special}}</td>
+      </tr>
+    </table>
+    <div *ngIf = "unit.alternateStats == true">
+        <table>
+            <tr style = "border: 1px solid black;" >
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+            </tr>      
+          </table>
+          <table>
+            <tr>
+              <th style = "padding: 10px; background-color: grey;">MV</th>
+              <th style = "padding: 10px; background-color: grey;">CM</th>
+              <th style = "padding: 10px; background-color: grey;">A</th>
+              <th style = "padding: 10px; background-color: grey;">D</th>
+              <th style = "padding: 10px; background-color: grey;">TYPE</th>
+              <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+            </tr>
+            <tr>
+              <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+            </tr>
+          </table>
+    </div>
+    
+  <div style = "border: 1px solid black;">
+  <table>
+      <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+          <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+      <tr>            
+          <th style = "padding: 5px; background-color: grey;">Name</th>
+        <th style = "padding: 5px; background-color: grey;">M&F</th>
+        <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+        <th style = "padding: 5px; background-color: grey;">Rf</th>
+        <th style = "padding: 5px; background-color: grey;">Rc</th>
+        <th style = "padding: 5px; background-color: grey;">Shots</th>
+        <th style = "padding: 5px; background-color: grey;">Acc</th>
+        <th style = "padding: 5px; background-color: grey;">Energy</th>
+        <th style = "padding: 5px; background-color: grey;">Special</th>
+        </tr>
+    
+      <tr>
+          <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+          <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+      </tr>
+    </div>
+    </li>
+    
+  </table>
+  </div>
+  <table>
+      <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+  </table>    
+  </div>
+  </div>
+  </li> 
+  
+  <H2>Scout</H2>
+  <li *ngFor = "let unit of scoutUnits" style = "list-style-type: none; margin-bottom: 10px;">    
+   <div style = "border: 1px solid black; page-break-inside: avoid;">
+        <div style = "page-break-inside: avoid;">
+      <table>
+      <tr style = "border: 1px solid black;" >
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+        <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+      </tr>      
+    </table>
+    <table>
+      <tr>
+        <th style = "padding: 10px; background-color: grey;">MV</th>
+        <th style = "padding: 10px; background-color: grey;">CM</th>
+        <th style = "padding: 10px; background-color: grey;">A</th>
+        <th style = "padding: 10px; background-color: grey;">D</th>
+        <th style = "padding: 10px; background-color: grey;">TYPE</th>
+        <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+      </tr>
+      <tr>
+        <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+        <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+        <td style = "padding: 10px;">{{unit.Armour}}</td>
+        <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+        <td style = "padding: 10px;">{{unit.Type}}</td>
+        <td style = "padding: 10px;">{{unit.Special}}</td>
+      </tr>
+    </table>
+    <div *ngIf = "unit.alternateStats == true">
+        <table>
+            <tr style = "border: 1px solid black;" >
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+            </tr>      
+          </table>
+          <table>
+            <tr>
+              <th style = "padding: 10px; background-color: grey;">MV</th>
+              <th style = "padding: 10px; background-color: grey;">CM</th>
+              <th style = "padding: 10px; background-color: grey;">A</th>
+              <th style = "padding: 10px; background-color: grey;">D</th>
+              <th style = "padding: 10px; background-color: grey;">TYPE</th>
+              <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+            </tr>
+            <tr>
+              <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+            </tr>
+          </table>
+    </div>
+    
+  <div style = "border: 1px solid black;">
+  <table>
+      <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+          <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+      <tr>            
+          <th style = "padding: 5px; background-color: grey;">Name</th>
+        <th style = "padding: 5px; background-color: grey;">M&F</th>
+        <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+        <th style = "padding: 5px; background-color: grey;">Rf</th>
+        <th style = "padding: 5px; background-color: grey;">Rc</th>
+        <th style = "padding: 5px; background-color: grey;">Shots</th>
+        <th style = "padding: 5px; background-color: grey;">Acc</th>
+        <th style = "padding: 5px; background-color: grey;">Energy</th>
+        <th style = "padding: 5px; background-color: grey;">Special</th>
+        </tr>
+    
+      <tr>
+          <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+          <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+      </tr>
+    </div>
+    </li>
+    
+  </table>
+  </div>
+  <table>
+      <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+  </table>    
+  </div>
+  </div>
+  </li> 
+  
+  <H2>Heavy</H2>
+  <li *ngFor = "let unit of heavyUnits" style = "list-style-type: none; margin-bottom: 10px;">    
+   <div style = "border: 1px solid black; page-break-inside: avoid;">
+        <div style = "page-break-inside: avoid;">
+      <table>
+      <tr style = "border: 1px solid black;" >
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+        <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+      </tr>      
+    </table>
+    <table>
+      <tr>
+        <th style = "padding: 10px; background-color: grey;">MV</th>
+        <th style = "padding: 10px; background-color: grey;">CM</th>
+        <th style = "padding: 10px; background-color: grey;">A</th>
+        <th style = "padding: 10px; background-color: grey;">D</th>
+        <th style = "padding: 10px; background-color: grey;">TYPE</th>
+        <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+      </tr>
+      <tr>
+        <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+        <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+        <td style = "padding: 10px;">{{unit.Armour}}</td>
+        <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+        <td style = "padding: 10px;">{{unit.Type}}</td>
+        <td style = "padding: 10px;">{{unit.Special}}</td>
+      </tr>
+    </table>
+    <div *ngIf = "unit.alternateStats == true">
+        <table>
+            <tr style = "border: 1px solid black;" >
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+            </tr>      
+          </table>
+          <table>
+            <tr>
+              <th style = "padding: 10px; background-color: grey;">MV</th>
+              <th style = "padding: 10px; background-color: grey;">CM</th>
+              <th style = "padding: 10px; background-color: grey;">A</th>
+              <th style = "padding: 10px; background-color: grey;">D</th>
+              <th style = "padding: 10px; background-color: grey;">TYPE</th>
+              <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+            </tr>
+            <tr>
+              <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+            </tr>
+          </table>
+    </div>
+    
+  <div style = "border: 1px solid black;">
+  <table>
+      <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+          <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+      <tr>            
+          <th style = "padding: 5px; background-color: grey;">Name</th>
+        <th style = "padding: 5px; background-color: grey;">M&F</th>
+        <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+        <th style = "padding: 5px; background-color: grey;">Rf</th>
+        <th style = "padding: 5px; background-color: grey;">Rc</th>
+        <th style = "padding: 5px; background-color: grey;">Shots</th>
+        <th style = "padding: 5px; background-color: grey;">Acc</th>
+        <th style = "padding: 5px; background-color: grey;">Energy</th>
+        <th style = "padding: 5px; background-color: grey;">Special</th>
+        </tr>
+    
+      <tr>
+          <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+          <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+      </tr>
+    </div>
+    </li>
+    
+  </table>
+  </div>
+  <table>
+      <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+  </table>    
+  </div>
+  </div>
+  </li> 
+  
+  <H2>Support</H2>
+  <li *ngFor = "let unit of supportUnits" style = "list-style-type: none; margin-bottom: 10px;">    
+   <div style = "border: 1px solid black; page-break-inside: avoid;">
+        <div style = "page-break-inside: avoid;">
+      <table>
+      <tr style = "border: 1px solid black;" >
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+        <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+      </tr>      
+    </table>
+    <table>
+      <tr>
+        <th style = "padding: 10px; background-color: grey;">MV</th>
+        <th style = "padding: 10px; background-color: grey;">CM</th>
+        <th style = "padding: 10px; background-color: grey;">A</th>
+        <th style = "padding: 10px; background-color: grey;">D</th>
+        <th style = "padding: 10px; background-color: grey;">TYPE</th>
+        <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+      </tr>
+      <tr>
+        <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+        <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+        <td style = "padding: 10px;">{{unit.Armour}}</td>
+        <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+        <td style = "padding: 10px;">{{unit.Type}}</td>
+        <td style = "padding: 10px;">{{unit.Special}}</td>
+      </tr>
+    </table>
+    <div *ngIf = "unit.alternateStats == true">
+        <table>
+            <tr style = "border: 1px solid black;" >
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+            </tr>      
+          </table>
+          <table>
+            <tr>
+              <th style = "padding: 10px; background-color: grey;">MV</th>
+              <th style = "padding: 10px; background-color: grey;">CM</th>
+              <th style = "padding: 10px; background-color: grey;">A</th>
+              <th style = "padding: 10px; background-color: grey;">D</th>
+              <th style = "padding: 10px; background-color: grey;">TYPE</th>
+              <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+            </tr>
+            <tr>
+              <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+            </tr>
+          </table>
+    </div>
+    
+  <div style = "border: 1px solid black;">
+  <table>
+      <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+          <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+      <tr>            
+          <th style = "padding: 5px; background-color: grey;">Name</th>
+        <th style = "padding: 5px; background-color: grey;">M&F</th>
+        <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+        <th style = "padding: 5px; background-color: grey;">Rf</th>
+        <th style = "padding: 5px; background-color: grey;">Rc</th>
+        <th style = "padding: 5px; background-color: grey;">Shots</th>
+        <th style = "padding: 5px; background-color: grey;">Acc</th>
+        <th style = "padding: 5px; background-color: grey;">Energy</th>
+        <th style = "padding: 5px; background-color: grey;">Special</th>
+        </tr>
+    
+      <tr>
+          <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+          <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+      </tr>
+    </div>
+    </li>
+    
+  </table>
+  </div>
+  <table>
+      <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+  </table>    
+  </div>
+  </div>
+  </li> 
+  
+  <H2>Auxiliary</H2>
+  <li *ngFor = "let unit of transportUnits" style = "list-style-type: none; margin-bottom: 10px;">    
+   <div style = "border: 1px solid black; page-break-inside: avoid;">
+        <div style = "page-break-inside: avoid;">
+      <table>
+      <tr style = "border: 1px solid black;" >
+        <td style = "border: 1px solid black; padding: 5px;">Auxiliary</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+        <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+        <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+      </tr>      
+    </table>
+    <table>
+      <tr>
+        <th style = "padding: 10px; background-color: grey;">MV</th>
+        <th style = "padding: 10px; background-color: grey;">CM</th>
+        <th style = "padding: 10px; background-color: grey;">A</th>
+        <th style = "padding: 10px; background-color: grey;">D</th>
+        <th style = "padding: 10px; background-color: grey;">TYPE</th>
+        <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+      </tr>
+      <tr>
+        <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+        <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+        <td style = "padding: 10px;">{{unit.Armour}}</td>
+        <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+        <td style = "padding: 10px;">{{unit.Type}}</td>
+        <td style = "padding: 10px;">{{unit.Special}}</td>
+      </tr>
+    </table>
+    <div *ngIf = "unit.alternateStats == true">
+        <table>
+            <tr style = "border: 1px solid black;" >
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+              <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+            </tr>      
+          </table>
+          <table>
+            <tr>
+              <th style = "padding: 10px; background-color: grey;">MV</th>
+              <th style = "padding: 10px; background-color: grey;">CM</th>
+              <th style = "padding: 10px; background-color: grey;">A</th>
+              <th style = "padding: 10px; background-color: grey;">D</th>
+              <th style = "padding: 10px; background-color: grey;">TYPE</th>
+              <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+            </tr>
+            <tr>
+              <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+              <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+            </tr>
+          </table>
+    </div>
+    
+  <div style = "border: 1px solid black;">
+  <table>
+      <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+          <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+      <tr>            
+          <th style = "padding: 5px; background-color: grey;">Name</th>
+        <th style = "padding: 5px; background-color: grey;">M&F</th>
+        <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+        <th style = "padding: 5px; background-color: grey;">Rf</th>
+        <th style = "padding: 5px; background-color: grey;">Rc</th>
+        <th style = "padding: 5px; background-color: grey;">Shots</th>
+        <th style = "padding: 5px; background-color: grey;">Acc</th>
+        <th style = "padding: 5px; background-color: grey;">Energy</th>
+        <th style = "padding: 5px; background-color: grey;">Special</th>
+        </tr>
+    
+      <tr>
+          <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+          <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+          <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+      </tr>
+    </div>
+    </li>
+    
+  </table>
+  </div>
+  <table>
+      <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+  </table>    
+  </div>
+  </div>
+  </li> 
+  
+  <li *ngFor = "let unit of airstrikeUnits" style = "list-style-type: none; margin-bottom: 10px;">    
+    <div style = "border: 1px solid black; page-break-inside: avoid;">
+         <div style = "page-break-inside: avoid;">
+       <table>
+       <tr style = "border: 1px solid black;" >
+         <td style = "border: 1px solid black; padding: 5px;">Auxiliary</td>
+         <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
+         <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
+         <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+         <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
+         <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
+       </tr>      
+     </table>
+     <table>
+       <tr>
+         <th style = "padding: 10px; background-color: grey;">MV</th>
+         <th style = "padding: 10px; background-color: grey;">CM</th>
+         <th style = "padding: 10px; background-color: grey;">A</th>
+         <th style = "padding: 10px; background-color: grey;">D</th>
+         <th style = "padding: 10px; background-color: grey;">TYPE</th>
+         <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+       </tr>
+       <tr>
+         <td style = "padding: 10px;">{{unit.getFullMoveString()}}</td>          
+         <td style = "padding: 10px;">{{unit.CounterMeasures}}</td>
+         <td style = "padding: 10px;">{{unit.Armour}}</td>
+         <td style = "padding: 10px;">{{unit.DamagePoints}}</td>
+         <td style = "padding: 10px;">{{unit.Type}}</td>
+         <td style = "padding: 10px;">{{unit.Special}}</td>
+       </tr>
+     </table>
+     <div *ngIf = "unit.alternateStats == true">
+         <table>
+             <tr style = "border: 1px solid black;" >
+               <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
+               <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Name}} x {{unit.amountTaken}}</td>
+               <td style = "border: 1px solid black; padding: 5px;">{{unit.alternateUnit.Points}}pts</td>
+               <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport1"><img src = "{{unit.alternateUnit.transport1Icon}}" width = "20">{{unit.alternateUnit.transport1Amount}}</td>
+               <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.alternateUnit.transport2"><img src = "{{unit.alternateUnit.transport2Icon}}" width = "20">{{unit.alternateUnit.transport2Amount}}</td>
+               <td style = "border: 1px solid black; padding: 5px;">Total Cost: {{unit.totalCost}}pts</td>
+             </tr>      
+           </table>
+           <table>
+             <tr>
+               <th style = "padding: 10px; background-color: grey;">MV</th>
+               <th style = "padding: 10px; background-color: grey;">CM</th>
+               <th style = "padding: 10px; background-color: grey;">A</th>
+               <th style = "padding: 10px; background-color: grey;">D</th>
+               <th style = "padding: 10px; background-color: grey;">TYPE</th>
+               <th style = "padding: 10px; background-color: grey;">SPECIAL</th>
+             </tr>
+             <tr>
+               <td style = "padding: 10px;">{{unit.alternateUnit.getFullMoveString()}}</td>
+               <td style = "padding: 10px;">{{unit.alternateUnit.CounterMeasures}}</td>
+               <td style = "padding: 10px;">{{unit.alternateUnit.Armour}}</td>
+               <td style = "padding: 10px;">{{unit.alternateUnit.DamagePoints}}</td>
+               <td style = "padding: 10px;">{{unit.alternateUnit.Type}}</td>
+               <td style = "padding: 10px;">{{unit.alternateUnit.Special}}</td>
+             </tr>
+           </table>
+     </div>
+     
+   <div style = "border: 1px solid black;">
+   <table>
+       <li style ="list-style: none;" *ngFor = "let weapon of unit.Weapons">
+           <div *ngIf = "weapon.Optional == false || (weapon.Optional == true && weapon.optionalTaken == true)">
+       <tr>            
+           <th style = "padding: 5px; background-color: grey;">Name</th>
+         <th style = "padding: 5px; background-color: grey;">M&F</th>
+         <th style = "padding: 5px; text-align: center; width: 95px; background-color: grey;">ARC</th>
+         <th style = "padding: 5px; background-color: grey;">Rf</th>
+         <th style = "padding: 5px; background-color: grey;">Rc</th>
+         <th style = "padding: 5px; background-color: grey;">Shots</th>
+         <th style = "padding: 5px; background-color: grey;">Acc</th>
+         <th style = "padding: 5px; background-color: grey;">Energy</th>
+         <th style = "padding: 5px; background-color: grey;">Special</th>
+         </tr>
+     
+       <tr>
+           <td style = "padding: 5px; text-align: left; width: 150px;" >{{weapon.Name}}</td>
+           <td style = "padding: 5px; text-align: center">{{weapon.MoveFire}}</td>
+           <td style = "padding: 5px; text-align: center; width: 95px;" >{{weapon.Arc}}</td>
+           <td style = "padding: 5px; text-align: center">{{weapon.RangeFull}}</td>
+           <td style = "padding: 5px; text-align: center">{{weapon.RangeCountered}}</td>
+           <td style = "padding: 5px; text-align: center">{{weapon.Shots}}</td>
+           <td style = "padding: 5px; text-align: center">{{weapon.Accuracy}}</td>
+           <td style = "padding: 5px; text-align: center">{{weapon.Energy}}</td>
+           <td style = "padding: 5px; text-align: center">{{weapon.Special}}</td>
+       </tr>
+     </div>
+     </li>
+     
+   </table>
+   </div>
+   <table>
+       <li style = "list-style: none;" *ngFor = "let rule of unit.ExtraRules">
+     {{rule}}
+   </li>
+   </table>    
+   </div>
+   </div>
+   </li> 
+  
+  </div>
+  </mat-dialog-content>

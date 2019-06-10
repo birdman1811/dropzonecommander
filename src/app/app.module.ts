@@ -23,6 +23,8 @@ import { ResistanceComponent } from './resistance/resistance.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { FactionsComponent } from './factions/factions.component';
 import { UnitphotosComponent } from './unitphotos/unitphotos.component';
+import { UnitlistComponent } from './unitlist/unitlist.component';
+import { UnitdatasheetComponent } from './unitdatasheet/unitdatasheet.component';
 
 declare var Hammer: any;
 @Injectable()
@@ -48,7 +50,9 @@ export class HammerConfig extends GestureConfig  {
     ResistanceComponent,
     ResourcesComponent,
     FactionsComponent,
-    UnitphotosComponent
+    UnitphotosComponent,
+    UnitlistComponent,
+    UnitdatasheetComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +69,7 @@ export class HammerConfig extends GestureConfig  {
       useClass: HammerConfig
     }
   ],
+  entryComponents: [UnitlistComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

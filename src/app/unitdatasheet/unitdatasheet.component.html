@@ -1,0 +1,156 @@
+<div class = "unitstatsheet">        
+        <div class = "toprows">
+<div class = "toprow">
+  <div *ngIf = "unit.Category == 'Transport'|| unit.Category == 'Airstrike' || unit.Category == 'Gate'">Auxiliary</div>    
+  <div *ngIf = "unit.Category != 'Transport' && unit.Category != 'Airstrike' && unit.Category != 'Gate'">{{unit.Category}}</div>
+  <div>{{unit.Name}}</div>
+  <div>{{unit.Points}}pts</div>
+  <div class = "transportlabel"><img class = "transporticon" src = "{{unit.getTransport1Icon()}}">{{unit.transport1Number}}</div>
+  <div class = "transportlabel"><img class = "transporticon" src = "{{unit.getTransport2Icon()}}">{{unit.transport2Number}}</div>
+  <div></div> 
+</div>
+
+
+
+<div class = "secondrow">
+  <div>MV</div>
+  <div>CM</div>
+  <div>A</div>
+  <div>D</div>
+  <div>TYPE</div>
+  <div>SPECIAL</div>
+</div>
+<div class = "secondrow">    
+  
+  <div>{{unit.getFullMoveString()}}</div>    
+  <div>{{unit.CounterMeasures}}</div>
+  <div>{{unit.Armour}}</div>
+  <div>{{unit.DamagePoints}}</div>
+  <div>{{unit.Type}}</div>
+  <div>{{unit.Special}}</div>
+</div>  
+<div *ngIf = "unit.alternateStats == true">
+    <div class = "toprow">
+        <div>{{unit.Category}}</div>
+        <div>{{unit.alternateUnit.Name}}</div>
+        <div>{{unit.alternateUnit.Points}}pts</div>
+        <div class = "transportlabel"><img class = "transporticon" src = "{{unit.getTransport1Icon()}}">{{unit.transport1Number}}</div>
+        <div class = "transportlabel"><img class = "transporticon" src = "{{unit.getTransport2Icon()}}">{{unit.transport2Number}}</div> 
+        <div></div> 
+      </div>
+    <div class = "secondrow">
+        <div>MV</div>
+        <div>CM</div>
+        <div>A</div>
+        <div>D</div>
+        <div>TYPE</div>
+        <div>SPECIAL</div>
+      </div>
+      <div class = "secondrow">
+        <div>{{unit.alternateUnit.Move}}"</div>
+        <div>{{unit.alternateUnit.CounterMeasures}}</div>
+        <div>{{unit.alternateUnit.Armour}}</div>
+        <div>{{unit.alternateUnit.DamagePoints}}</div>
+        <div>{{unit.alternateUnit.Type}}</div>
+        <div>{{unit.alternateUnit.Special}}</div>
+      </div>  
+</div>
+</div>
+
+<div *ngIf = "unit.Type == 'Behemoth'">
+
+<div class = "behemothstats">
+<div>
+  <div class = "header">
+    Zone
+  </div>
+  <div class = "row">
+    Hull
+  </div>
+  <div class = "row">
+    Legs
+  </div>
+  <div class = "row">
+    Weapons
+  </div>
+</div>
+<div>
+  <div class = "header">
+    Damage Thresholds
+  </div>
+  <div class = "row">
+    <div *ngFor = "let dummy of ' '.repeat(unit.BehemothStats.HullPoints).split(''), let x = index">
+      <div class = "hardpoint">
+        {{unit.BehemothStats.HullDamagePoints}}
+      </div>
+    </div>
+  </div>
+  <div class = "row">
+      <div *ngFor = "let dummy of ' '.repeat(unit.BehemothStats.LegsPoints).split(''), let x = index">
+          <div class = "hardpoint">
+            {{unit.BehemothStats.LegsDamagePoints}}
+          </div>
+        </div>
+  </div>
+  <div class = "row">
+      <div *ngFor = "let dummy of ' '.repeat(unit.BehemothStats.WeaponsPoints).split(''), let x = index">
+          <div class = "hardpoint">
+            {{unit.BehemothStats.WeaponsDamagePoints}}
+          </div>
+        </div>
+  </div>
+</div>
+<div>
+  <div class = "header">
+    Crippled Effect
+  </div>
+  <div class = "row">
+    {{unit.BehemothStats.HullEffect}}
+  </div>
+  <div class = "row">
+      {{unit.BehemothStats.LegsEffect}}
+  </div>
+  <div class = "row">
+      {{unit.BehemothStats.WeaponsEffect}}
+  </div>
+</div>
+</div>
+
+</div>
+
+<div class = "thirdrow">
+  <div *ngIf = "unit.MinSquadSize != unit.MaxSquadSize">  Squad Size: {{unit.MinSquadSize}} - {{unit.MaxSquadSize}}</div><div *ngIf = "unit.MinSquadSize == unit.MaxSquadSize">Squad Size: {{unit.MinSquadSize}}</div>
+</div>
+<div class = "fourthrow">
+  <li *ngFor = "let rule of unit.ExtraRules">
+    {{rule}}
+  </li>
+</div>
+<div *ngIf = "unit.Weapons.length > 0" class = "fifthrow">
+  <div class = "blank"></div>
+  <div>Move & Fire</div>
+  <div>Arc</div>
+  <div>Range (F)</div>
+  <div>Range (C)</div>
+  <div>Shots</div>
+  <div>Accuracy</div>
+  <div>Energy</div>
+  <div>Special</div>
+</div>
+<li *ngFor = "let weapon of unit.Weapons">
+  <div class = weapon>
+    <div>{{weapon.Name}}</div>
+    <div>{{weapon.MoveFire}}</div>
+    <div>{{weapon.Arc}}</div>
+    <div>{{weapon.RangeFull}}</div>
+    <div>{{weapon.RangeCountered}}</div>
+    <div>{{weapon.Shots}}</div>
+    <div>{{weapon.Accuracy}}</div>
+    <div>{{weapon.Energy}}</div>
+    <div>{{weapon.Special}}</div>
+  </div>
+</li>
+
+</div>
+
+
