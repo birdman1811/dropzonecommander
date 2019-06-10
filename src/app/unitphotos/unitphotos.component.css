@@ -28,17 +28,34 @@ mat-slider{
     border-color: darkslategrey;
     border-style: double;
     margin-bottom: 50px;
-    margin-top: 50px;
+    margin: 50px;
 }
 
 .unitname{
     font-family: 'VenusRisingRegular'
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width: 1500px){
+    .unitphoto{
+        width: 200px;
+        border-color: darkslategrey;
+        border-style: double;
+    }
+    
+    .unitphotosmall{
+        display: none;       
+    }
+
+    .table{
+        display: grid;
+        grid-template-columns: 12.5% 0% 75% 0% 12.5%;
+    }
+}
+
+@media screen and (max-width:1000px){
 
     .unitphoto{
-        width: 80px;
+        width: 100px;
         border-color: darkslategrey;
         border-style: double;
     }
@@ -49,6 +66,10 @@ mat-slider{
 
     button{
         font-size: xx-small;
+    }
+    .table{
+        display: grid;
+        grid-template-columns: 12.5% 0% 70% 0% 12.5%;
     }
 
 }
