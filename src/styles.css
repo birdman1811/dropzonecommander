@@ -13,7 +13,7 @@
 
 body{
     
-    background-image: url("/assets/Images/BFEcover.jpg");
+    background-image: url("/assets/images/BFEcover.jpg");
     text-align: center;
     min-height: 300px;
     background-repeat: no-repeat;
@@ -254,7 +254,7 @@ p{
     }
 
     body{    
-        background-image: url("/assets/Images/GreyBackground.png");
+        background-image: url("/assets/images/GreyBackground.png");
         text-align: center;
         min-height: 600px;
         background-repeat: repeat-y;

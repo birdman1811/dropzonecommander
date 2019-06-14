@@ -2,11 +2,11 @@
     text-align: center;    
     width:100%;       
     min-height: 250px;         
-    background-image: url('/assets/Images/GreyBackground.png');  
+    background-image: url('/assets/images/GreyBackground.png');  
 }
 
 body{
-    background-image: url('/assets/Images/GreyBackground.png');
+    background-image: url('/assets/images/GreyBackground.png');
 }
 
 .subheader{
@@ -61,7 +61,7 @@ body{
     .header{
         text-align: center;    
         width:100%;
-        background-image: url('/assets/Images/GreyBackground.png');
+        background-image: url('/assets/images/GreyBackground.png');
         min-height: 140px;        
     }
 }

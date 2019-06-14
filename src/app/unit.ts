@@ -118,7 +118,7 @@ export class Unit {
 
     getImage():string{
         if (this.customImage == false){
-            return 'https://thetrolltrader.com/dzcbuilderbeta/assets/images/unitphotos/' + this.Faction + '/' + this.Name + '.jpg'
+            return '/builder/assets/images/unitphotos/' + this.faction + '/' + this.Name + '.jpg'
         }
         else {
             return this.customImageurl;
@@ -175,7 +175,7 @@ export class Unit {
     
 
     GetPicture(): string{
-        this.picture = 'https://thetrolltrader.com/dzcbuilderbeta/assets/images/unitphotos/' + this.faction + '/' + this.Name + '.jpg';
+        this.picture = 'builder/assets/images/unitphotos/' + this.faction + '/' + this.Name + '.jpg';
         return this.picture;
     }
 }
