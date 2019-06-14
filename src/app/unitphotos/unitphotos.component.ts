@@ -172,6 +172,45 @@ export class UnitphotosComponent implements OnInit {
       this.transportService.SetTransportIcons(newUnit);
       this.definedUnits.push(newUnit);          
     }
+    if (unit.Name == 'Starsprite Drones'){
+      var newUnit = new Unit();
+      newUnit.faction = this.faction.name;
+      newUnit.Name = unit.Name;
+      newUnit.GetPicture();
+      newUnit.MinSquadSize = unit.MinSquadSize;
+      newUnit.MaxSquadSize = unit.MaxSquadSize;
+      newUnit.Move = unit.Move;
+      newUnit.Move2 = unit.Move2;
+      newUnit.AlternateMove = unit.AlternateMove;
+      newUnit.Points = unit.Points;
+      newUnit.Special = unit.Special;
+      newUnit.TransportOptions = unit.TransportOptions;
+      newUnit.Type = unit.Type;
+      newUnit.SetWeapons(unit);        
+      newUnit.ExtraRules = unit.ExtraRules;                 
+      newUnit.Category = unit.Category;
+      newUnit.DamagePoints = unit.DamagePoints;
+      newUnit.CounterMeasures = unit.CounterMeasures;
+      newUnit.Category = unit.Category;
+      newUnit.Armour = unit.Armour;
+      newUnit.alternateStats = unit.alternateStats;
+      newUnit.alternateUnit = unit.alternateUnit;
+      newUnit.transport1Class = unit.transport1Class;
+      newUnit.transport2Class = unit.transport2Class;
+      newUnit.transport1Number = unit.transport1Number; 
+      newUnit.transport2Number = unit.transport2Number;
+      newUnit.transport1Icon = unit.transport1Icon;
+      newUnit.transport2Icon = unit.transport2Icon; 
+      newUnit.BehemothStats = unit.BehemothStats;  
+      newUnit.customImage = unit.customImage;
+      newUnit.customImageurl = unit.customImageurl; 
+      newUnit.SetTransportOptions();    
+      newUnit.setTransportAmount();
+      this.transportService.setTransports(newUnit);
+      this.SetTransports(newUnit);    
+      this.transportService.SetTransportIcons(newUnit);
+      this.definedUnits.push(newUnit);   
+    }
   }
     this.viewedUnit = this.definedUnits[0]
     this.nextUnit = this.definedUnits[1];
