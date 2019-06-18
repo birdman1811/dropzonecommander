@@ -16,7 +16,8 @@
         <td style = "border: 1px solid black; padding: 5px;">{{unit.Category}}</td>
         <td style = "border: 1px solid black; padding: 5px;">{{unit.Name}}</td>
         <td style = "border: 1px solid black; padding: 5px;">{{unit.Points}}pts</td>
-        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1 && unit.transport1Number > 0"><img src = "{{unit.transport1Icon}}" width = "20">{{unit.transport1Number}}</td>
+        <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport1 && unit.transport1Number == 0"><img src = "{{unit.transport1Icon}}" width = "20"></td>
         <td style = "border: 1px solid black; padding: 5px;" *ngIf ="unit.transport2"><img src = "{{unit.transport2Icon}}" width = "20">{{unit.transport2Number}}</td>      
         <td style = "border: 1px solid black; padding: 5px;"> <img src = {{unit.picture}} width = "100"> </td>
       </tr>      
