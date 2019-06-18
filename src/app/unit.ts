@@ -37,6 +37,11 @@ export class Unit {
     transport2Number: number;
     transport2Amount: number;
     transport2Icon: string;
+    transport3: string;
+    transport3Class: string;
+    transport3Number: number;
+    transport3Amount: number;
+    transport3Icon: string;
     hasOptionalWeapon: boolean;
     optionalTaken: boolean;
     transports: Unit[];
@@ -78,14 +83,22 @@ export class Unit {
         if (numberOfOptions == 0){
             this.transport1 = "";
             this.transport2 = "";
+            this.transport3 = "";
         }
         if (numberOfOptions == 1){
             this.transport1 = this.TransportOptions[0];
             this.transport2 = "";
+            this.transport3 = "";
         }
         if (numberOfOptions == 2){
             this.transport1 = this.TransportOptions[0];
             this.transport2 = this.TransportOptions[1];
+            this.transport3 = "";
+        }
+        if (numberOfOptions == 3){
+            this.transport1 = this.TransportOptions[0];
+            this.transport2 = this.TransportOptions[1];
+            this.transport3 = this.TransportOptions[2];
         }
     }
 
@@ -143,6 +156,10 @@ export class Unit {
         return this.transport2Icon;
     }
 
+    getTransport3Icon(){
+        return this.transport3Icon;
+    }
+
     addTransport(transport: Unit){
         this.transports.push(transport);
     }
@@ -150,6 +167,7 @@ export class Unit {
     setTransportAmount(){
         this.transport2Amount = this.transport2Number * this.amountTaken;
         this.transport1Amount = this.transport1Number * this.amountTaken;
+        this.transport3Amount = this.transport3Number * this.amountTaken;
     }
 
     SetWeapons(unit: Unit){

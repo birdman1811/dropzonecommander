@@ -38,7 +38,7 @@ li{
 .unitstatsheet .toprow{
     background-color: cadetblue;
     display: grid;
-    grid-template-columns: 15% 35% 10% 20% 20%;
+    grid-template-columns: 15% 35% 10% 13.333% 13.333% 13.333%;
     border-width: 1px;
     border-style: inset;
     border-color: grey;

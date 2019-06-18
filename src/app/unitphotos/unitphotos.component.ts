@@ -197,10 +197,13 @@ export class UnitphotosComponent implements OnInit {
       newUnit.alternateUnit = unit.alternateUnit;
       newUnit.transport1Class = unit.transport1Class;
       newUnit.transport2Class = unit.transport2Class;
+      newUnit.transport3Class = unit.transport3Class;
       newUnit.transport1Number = unit.transport1Number; 
       newUnit.transport2Number = unit.transport2Number;
+      newUnit.transport3Number = unit.transport3Number;
       newUnit.transport1Icon = unit.transport1Icon;
       newUnit.transport2Icon = unit.transport2Icon; 
+      newUnit.transport3Icon = unit.transport3Icon;
       newUnit.BehemothStats = unit.BehemothStats;  
       newUnit.customImage = unit.customImage;
       newUnit.customImageurl = unit.customImageurl; 

@@ -26,6 +26,12 @@ export class TransportsetterService {
         var y = unit.transport2.substring(1);
         unit.transport2Number = parseInt(y);
       }
+      if (unit.transport3 != ""){
+        var x = unit.transport3.charAt(0);
+        unit.transport3Class = x;
+        var y = unit.transport3.substring(1);
+        unit.transport3Number = parseInt(y);
+      }
     }
   }
 
@@ -45,7 +51,13 @@ export class TransportsetterService {
       unit.transport2Class = x;
       var y = unit.transport2.substring(1);
       unit.transport2Number = parseInt(y);
-    }      
+    }  
+    if (unit.transport3 != ""){
+      var x = unit.transport3.charAt(0);
+      unit.transport3Class = x;
+      var y = unit.transport3.substring(1);
+      unit.transport3Number = parseInt(y);
+    }    
   }
 
   
@@ -234,6 +246,12 @@ export class TransportsetterService {
       }
       if (unit.transport1Class == 'B'){
         unit.transport1Icon = 'https://www.dropzonecommander.com/builder/assets/images/transporticons/WheelsTransportBlue.png';
+      }
+      if (unit.transport3Class == 'c'){
+        unit.transport3Icon = 'https://www.dropzonecommander.com/builder/assets/images/transporticons/InfantryGreen.png';
+      }
+      if (unit.transport3Class == 'C'){
+        unit.transport3Icon = 'https://www.dropzonecommander.com/builder/assets/images/transporticons/InfantryTransportGreen.png';
       }
 
     }
