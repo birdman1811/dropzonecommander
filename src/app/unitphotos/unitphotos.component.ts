@@ -6,7 +6,7 @@ import { UnitsService } from '../units.service';
 import { Unit } from '../unit';
 import { TransportsetterService } from '../transportsetter.service';
 import { UnitlistComponent } from '../unitlist/unitlist.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({

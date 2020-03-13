@@ -3,9 +3,9 @@ import { NgModule, Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider'; 
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { GestureConfig } from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { TitleComponent } from './title/title.component';
@@ -25,14 +25,9 @@ import { FactionsComponent } from './factions/factions.component';
 import { UnitphotosComponent } from './unitphotos/unitphotos.component';
 import { UnitlistComponent } from './unitlist/unitlist.component';
 import { UnitdatasheetComponent } from './unitdatasheet/unitdatasheet.component';
+import { MatButtonModule } from '@angular/material/button';
 
-declare var Hammer: any;
-@Injectable()
-export class HammerConfig extends GestureConfig  {
-  buildHammer(element: HTMLElement) {
-    return new GestureConfig({touchAction: 'pan-y'}).buildHammer(element);
-  }
-}
+
 
 @NgModule({
   declarations: [
@@ -61,13 +56,10 @@ export class HammerConfig extends GestureConfig  {
     BrowserAnimationsModule,
     MatSliderModule,
     MatDialogModule,
-    
+    MatButtonModule,
   ],
   providers: [
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: HammerConfig
-    }
+    
   ],
   entryComponents: [UnitlistComponent],
   bootstrap: [AppComponent]

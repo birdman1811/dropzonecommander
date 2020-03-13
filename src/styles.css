@@ -152,6 +152,25 @@ p{
   padding: 10px;
 }
 
+a:link {
+    color: black;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: black;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: black;
+  }
+  
+  /* selected link */
+  a:active {
+    color: black;
+  }
+
 
 
 @media screen and (max-width:600px){

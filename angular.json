@@ -22,7 +22,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [                         
+            "styles": [
               "src/styles.css"
             ],
             "scripts": []
@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "dropzonecommander"
+  "defaultProject": "dropzonecommander",
+  "cli": {
+    "analytics": "5c4f62ae-c72a-4e14-909c-d1cdc722bd59"
+  }
 }
